@@ -1,0 +1,24 @@
+{
+    "parent": "minecraft:item/generated",
+    "textures": {
+      "layer0": "minecraft:item/echo_shard"
+    },
+    "overrides": [
+      {"predicate": {"custom_model_data": 6001},"model": "minecraft:item/coin_1"},
+      {"predicate": {"custom_model_data": 6002},"model": "minecraft:item/coin_5"},
+      {"predicate": {"custom_model_data": 6003},"model": "minecraft:item/coin_10"},
+      {"predicate": {"custom_model_data": 6004},"model": "minecraft:item/coin_20"},
+      {"predicate": {"custom_model_data": 6005},"model": "minecraft:item/coin_50"},
+      {"predicate": {"custom_model_data": 6006},"model": "minecraft:item/coin_100"},
+      {"predicate": {"custom_model_data": 6007},"model": "minecraft:item/coin_500"},
+      {"predicate": {"custom_model_data": 6008},"model": "minecraft:item/coin_sack"},
+      {"predicate": {"custom_model_data": 6009},"model": "minecraft:item/coin_1"},
+      {"predicate": {"custom_model_data": 6010},"model": "minecraft:item/coin_5"},
+      {"predicate": {"custom_model_data": 6011},"model": "minecraft:item/coin_10"},
+      {"predicate": {"custom_model_data": 6012},"model": "minecraft:item/coin_20"},
+      {"predicate": {"custom_model_data": 6013},"model": "minecraft:item/coin_50"},
+      {"predicate": {"custom_model_data": 6014},"model": "minecraft:item/coin_100"},
+      {"predicate": {"custom_model_data": 6015},"model": "minecraft:item/coin_500"}
+
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "pattern": [
+        " @ ",
+        "***",
+        " * "
+    ],
+    "key": {
+        "*": [
+            "minecraft:leather"
+        ],
+        "@": [
+            "minecraft:string"
+        ]
+    },
+    "result": {
+        "id": "minecraft:echo_shard",
+        "count": 1,
+        "components": {
+            "minecraft:item_name": "\"Wallet\"",
+            "custom_data": "{ui:1b}",
+            "minecraft:item_model": "coinsack"
+        }
+    }
+}

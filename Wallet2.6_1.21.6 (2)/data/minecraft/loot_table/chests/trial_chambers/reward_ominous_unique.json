@@ -1,0 +1,90 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [{
+        "type": "minecraft:item",
+        "name": "minecraft:echo_shard",
+        "weight": 5,
+        "functions": [
+            {
+                "function": "minecraft:set_components",
+                "components": {
+                    "minecraft:item_name": "\"5 Coin\"",
+                    "minecraft:item_model": "5coin"
+                }
+            }
+        ]
+    },
+    {
+        "type": "minecraft:item",
+        "name": "minecraft:echo_shard",
+        "weight": 12,
+        "functions": [
+            {
+                "function": "minecraft:set_components",
+                "components": {
+                    "minecraft:item_name": "\"1 Coin\"",
+                    "minecraft:item_model": "1coin"
+                }
+            }
+        ]
+    },
+    {
+        "type": "minecraft:item",
+        "name": "minecraft:echo_shard",
+        "weight": 2,
+        "functions": [
+            {
+                "function": "minecraft:set_components",
+                "components": {
+                    "minecraft:item_name": "\"10 Coin\"",
+                    "minecraft:item_model": "10coin"
+                }
+            }
+        ]
+    },
+    {
+        "type": "minecraft:item",
+        "name": "minecraft:echo_shard",
+        "weight": 1,
+        "functions": [
+            {
+                "function": "minecraft:set_components",
+                "components": {
+                    "minecraft:item_name": "\"20 Coin\"",
+                    "minecraft:item_model": "20coin"
+                }
+            }
+        ]
+    },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:enchanted_golden_apple",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:flow_armor_trim_smithing_template",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:flow_banner_pattern",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:music_disc_creator"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:heavy_core"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "minecraft:chests/trial_chambers/reward_ominous_unique"
+}

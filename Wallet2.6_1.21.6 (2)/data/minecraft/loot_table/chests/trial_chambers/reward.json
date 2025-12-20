@@ -1,0 +1,107 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [{
+        "type": "minecraft:item",
+        "name": "minecraft:echo_shard",
+        "weight": 5,
+        "functions": [
+            {
+                "function": "minecraft:set_components",
+                "components": {
+                    "minecraft:item_name": "\"5 Coin\"",
+                    "minecraft:item_model": "5coin"
+                }
+            }
+        ]
+    },
+    {
+        "type": "minecraft:item",
+        "name": "minecraft:echo_shard",
+        "weight": 12,
+        "functions": [
+            {
+                "function": "minecraft:set_components",
+                "components": {
+                    "minecraft:item_name": "\"1 Coin\"",
+                    "minecraft:item_model": "1coin"
+                }
+            }
+        ]
+    },
+    {
+        "type": "minecraft:item",
+        "name": "minecraft:echo_shard",
+        "weight": 2,
+        "functions": [
+            {
+                "function": "minecraft:set_components",
+                "components": {
+                    "minecraft:item_name": "\"10 Coin\"",
+                    "minecraft:item_model": "10coin"
+                }
+            }
+        ]
+    },
+    {
+        "type": "minecraft:item",
+        "name": "minecraft:echo_shard",
+        "weight": 1,
+        "functions": [
+            {
+                "function": "minecraft:set_components",
+                "components": {
+                    "minecraft:item_name": "\"20 Coin\"",
+                    "minecraft:item_model": "20coin"
+                }
+            }
+        ]
+    },
+        {
+          "type": "minecraft:loot_table",
+          "value": "minecraft:chests/trial_chambers/reward_rare",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": "minecraft:chests/trial_chambers/reward_common",
+          "weight": 2
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "minecraft:chests/trial_chambers/reward_common"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 3.0,
+        "min": 1.0
+      }
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "chance": 0.25,
+          "condition": "minecraft:random_chance"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "minecraft:chests/trial_chambers/reward_unique"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "minecraft:chests/trial_chambers/reward"
+}
