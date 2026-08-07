@@ -1,0 +1,87 @@
+plugins {
+    // com.github.johnrengelman.shadow 7.1.2 uses the removed Convention API and doesn't load on
+    // Gradle 9 - the project moved to com.gradleup.shadow after the original maintainer stepped away.
+    id "com.gradleup.shadow" version "9.6.1"
+}
+
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
+
+configurations {
+    common
+    shadowCommon // Don't use shadow from the shadow plugin since it *excludes* files.
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
+}
+
+dependencies {
+    implementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    api "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
+    // Remove the next line if you don't want to depend on the API
+    api "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
+
+    common(project(path: ":common")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
+
+    // Dev-environment only: makes Mod Menu available in :fabric:runClient without pulling it into
+    // the shipped jar or the shadowJar classpath. Not a hard dependency - see fabric.mod.json "suggests".
+    runtimeOnly "com.terraformersmc:modmenu:${rootProject.modmenu_version}"
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+// loom-no-remap has no remapJar - shadowJar becomes the primary output artifact.
+// See: https://gist.github.com/shedaniel/18d4eebf940e9c3296e87d994ebb2838
+jar {
+    archiveClassifier = "raw"
+}
+
+shadowJar {
+    dependsOn(jar)
+    mainSpec.sourcePaths.clear() // don't re-include the raw source set output, keep Loom's processed jar.mods
+    from(zipTree(jar.archiveFile))
+
+    configurations = [project.configurations.shadowCommon]
+    archiveClassifier = null
+    from rootProject.file("LICENSE")
+}
+
+sourcesJar {
+    def commonSources = project(":common").sourcesJar
+    dependsOn commonSources
+    from commonSources.archiveFile.map { zipTree(it) }
+}
+
+configurations {
+    apiElements {
+        outgoing.artifacts.clear()
+        outgoing.artifact(shadowJar)
+    }
+    runtimeElements {
+        outgoing.artifacts.clear()
+        outgoing.artifact(shadowJar)
+    }
+}
+
+publishing {
+    publications {
+        mavenFabric(MavenPublication) {
+            artifactId = rootProject.archives_base_name + "-" + project.name
+            from components.java
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+    }
+}

@@ -1,0 +1,53 @@
+plugins {
+    id "architectury-plugin" version "3.5.169"
+    // Minecraft 26.1+ ships unobfuscated, so Loom's normal remapping pipeline no longer applies.
+    // dev.architectury.loom-no-remap is the Architectury-published variant for unobfuscated versions
+    // (same release train as dev.architectury.loom - see architectury/architectury-loom#328).
+    id "dev.architectury.loom-no-remap" version "1.17.491" apply false
+}
+
+architectury {
+    minecraft = rootProject.minecraft_version
+}
+
+subprojects {
+    apply plugin: "dev.architectury.loom-no-remap"
+
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        // Minecraft 26.1+ ships unobfuscated - Mojang no longer publishes official mappings and
+        // Yarn was discontinued at the same transition. No `mappings` dependency is declared or needed.
+    }
+}
+
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+    apply plugin: "maven-publish"
+
+    base.archivesName = rootProject.archives_base_name
+    version = rootProject.mod_version
+    group = rootProject.maven_group
+
+    repositories {
+        // Add repositories to retrieve artifacts from in here.
+        // You should only use this when depending on other mods because
+        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+        // for more information about repositories.
+        //
+        // Loom does NOT auto-add the NeoForge repo (unlike the classic Forge repo it knew about) -
+        // declare it explicitly so the neoforge module's `neoForge "net.neoforged:neoforge:..."` resolves.
+        maven { url "https://maven.neoforged.net/releases/" }
+        maven { url "https://maven.terraformersmc.com/releases/" } // Mod Menu
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.release.set(25)
+    }
+
+    java {
+        withSourcesJar()
+    }
+}

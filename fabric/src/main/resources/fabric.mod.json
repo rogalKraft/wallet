@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "wallet",
+  "version": "${version}",
+
+  "name": "Wallet",
+  "description": "A coin & wallet mod: collect, store, and manage currency looted from villages, dungeons, and other structures.",
+  "authors": ["rogalKraft"],
+  "contact": {
+    "sources": "https://github.com/rogalKraft/wallet-mod"
+  },
+
+  "license": "MIT",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "org.wallet.rogalik.wallet.fabric.WalletFabric"
+    ]
+  },
+  "mixins": [
+    "wallet.mixins.json",
+    "wallet-common.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": ">=26.2"
+  },
+  "suggests": {
+    "modmenu": ">=20.0.0"
+  }
+}

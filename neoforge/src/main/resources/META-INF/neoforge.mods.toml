@@ -1,0 +1,42 @@
+# The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
+modLoader="javafml" #mandatory
+# A version range to match for said mod loader - this is the FML loader spec version bundled with NeoForge, NOT the neoforge_version.
+# TODO: verify against the actual FML loader version bundled with the pinned NeoForge build (26.2.0.48-beta) on first successful build.
+loaderVersion="[1,)" #mandatory
+# The license for your mod. This is mandatory metadata and allows for easier comprehension of your redistributive properties.
+license="MIT"
+# A URL to refer people to when problems occur with this mod
+# TODO: update once the mod's own repository (separate from the original datapack) is published
+issueTrackerURL="https://github.com/rogalKraft/wallet-mod/issues"
+# A list of mods - how many allowed here is determined by the individual mod loader
+[[mods]] #mandatory
+# The modid of the mod
+modId="wallet" #mandatory
+# The version number of the mod
+version="${file.jarVersion}" #mandatory
+# A display name for the mod
+displayName="Wallet" #mandatory
+# A file name (in the root of the mod JAR) containing a logo for display
+logoFile="icon.png" #optional
+# A text field displayed in the mod UI
+authors="rogalKraft" #optional
+# The description text for the mod (multi line!) (#mandatory)
+description='''
+A coin & wallet mod: collect, store, and manage currency looted from villages, dungeons, and other structures. Reimplements the original Wallet datapack as a full mod with real items, a real wallet screen, and no companion resource pack.
+'''
+
+[[dependencies.wallet]] #optional
+    modId="neoforge" #mandatory
+    type="required" #mandatory
+    versionRange="[26.2,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.wallet]]
+    modId="minecraft"
+    type="required"
+    # NOTE: Minecraft switched to year-based versioning (26.2 is the current line); verify this upper bound (27.0)
+    # against the actual next major release before shipping.
+    versionRange="[26.2,27.0)"
+    ordering="NONE"
+    side="BOTH"

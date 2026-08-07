@@ -1,0 +1,87 @@
+plugins {
+    // com.github.johnrengelman.shadow 7.1.2 uses the removed Convention API and doesn't load on
+    // Gradle 9 - the project moved to com.gradleup.shadow after the original maintainer stepped away.
+    id "com.gradleup.shadow" version "9.6.1"
+}
+loom {
+    // Mixin registration moved to the unified mixin{} block in Loom 1.17+ - NeoForgeExtensionAPI
+    // no longer has mixinConfig() (it now only exposes access transformer / AW->AT conversion).
+    // add("main") registers the main sourceSet once; Loom auto-discovers the *.mixins.json files
+    // in its resources (wallet-common.mixins.json, wallet.mixins.json) by convention.
+    mixin {
+        add("main")
+    }
+}
+architectury {
+    platformSetupLoomIde()
+    neoForge()
+}
+
+configurations {
+    common
+    shadowCommon // Don't use shadow from the shadow plugin since it *excludes* files.
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentNeoForge.extendsFrom common
+}
+
+dependencies {
+    neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
+    // Remove the next line if you don't want to depend on the API
+    api "dev.architectury:architectury-neoforge:${rootProject.architectury_version}"
+
+    common(project(path: ":common")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive = false }
+}
+
+// neoforge.mods.toml uses "${file.jarVersion}", which NeoForge itself substitutes at runtime
+// from the jar manifest - no Gradle-side expand() needed (or wanted; expand() would choke trying
+// to resolve a template variable that isn't in its substitution map).
+
+// loom-no-remap has no remapJar - shadowJar becomes the primary output artifact.
+// See: https://gist.github.com/shedaniel/18d4eebf940e9c3296e87d994ebb2838
+jar {
+    archiveClassifier = "raw"
+}
+
+shadowJar {
+    dependsOn(jar)
+    mainSpec.sourcePaths.clear() // don't re-include the raw source set output, keep Loom's processed jar
+    from(zipTree(jar.archiveFile))
+    exclude "fabric.mod.json"
+
+    configurations = [project.configurations.shadowCommon]
+    archiveClassifier = null
+    from rootProject.file("LICENSE")
+}
+
+sourcesJar {
+    def commonSources = project(":common").sourcesJar
+    dependsOn commonSources
+    from commonSources.archiveFile.map { zipTree(it) }
+}
+
+configurations {
+    apiElements {
+        outgoing.artifacts.clear()
+        outgoing.artifact(shadowJar)
+    }
+    runtimeElements {
+        outgoing.artifacts.clear()
+        outgoing.artifact(shadowJar)
+    }
+}
+
+publishing {
+    publications {
+        mavenNeoForge(MavenPublication) {
+            artifactId = rootProject.archives_base_name + "-" + project.name
+            from components.java
+        }
+    }
+
+    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+    repositories {
+        // Add repositories to publish to here.
+    }
+}

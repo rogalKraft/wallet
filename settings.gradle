@@ -1,0 +1,15 @@
+pluginManagement {
+    repositories {
+        maven { url "https://maven.fabricmc.net/" }
+        maven { url "https://maven.architectury.dev/" }
+        maven { url "https://maven.neoforged.net/releases/" }
+        gradlePluginPortal()
+    }
+}
+
+// Classic Forge is not included: Architectury stopped publishing the "architectury-forge" bridge
+// artifact after March 2024 (no build compatible with unobfuscated MC 26.x exists), and current
+// Architectury docs only document Fabric + NeoForge. NeoForge is treated as the Forge-family loader.
+include("common")
+include("fabric")
+include("neoforge")
