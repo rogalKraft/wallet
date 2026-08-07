@@ -1,0 +1,11 @@
+{
+  "itemGroup.wallet": "Wallet",
+
+  "item.wallet.coin_1": "1 Coin",
+  "item.wallet.coin_5": "5 Coin",
+  "item.wallet.coin_10": "10 Coin",
+  "item.wallet.coin_20": "20 Coin",
+  "item.wallet.coin_50": "50 Coin",
+  "item.wallet.coin_100": "100 Coin",
+  "item.wallet.coin_500": "500 Coin"
+}

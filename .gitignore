@@ -1,3 +1,7 @@
+# Reference-only dump of the original datapack's resource pack (source material for
+# porting coin/wallet assets) - not part of the mod build, kept locally for reference.
+/Wallet-resourcepacks*/
+
 # User-specific stuff
 .idea/
 

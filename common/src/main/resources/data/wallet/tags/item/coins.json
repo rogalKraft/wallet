@@ -1,0 +1,11 @@
+{
+  "values": [
+    "wallet:coin_1",
+    "wallet:coin_5",
+    "wallet:coin_10",
+    "wallet:coin_20",
+    "wallet:coin_50",
+    "wallet:coin_100",
+    "wallet:coin_500"
+  ]
+}
