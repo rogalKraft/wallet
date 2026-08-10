@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Wallet",
-  "description": "A coin & wallet mod: collect, store, and manage currency looted from villages, dungeons, and other structures.",
+  "description": "Adds seven coin denominations (1/5/10/20/50/100/500) that generate in village, dungeon, and structure loot, plus a Coin Sack that stores them in its own 21-slot screen with auto-pickup and a running total. Coins can be exchanged between denominations at a crafting table. Three enchantments add ownership and risk: Owner Binding locks a sack to its owner, Wallet Guardian saves it on death, and Fragility spills its contents. A full reimplementation of the Wallet datapack as a real mod - no companion resource pack needed.",
   "authors": ["rogalKraft"],
   "contact": {
     "sources": "https://github.com/rogalKraft/wallet-mod"
@@ -17,6 +17,9 @@
   "entrypoints": {
     "main": [
       "org.wallet.rogalik.wallet.fabric.WalletFabric"
+    ],
+    "client": [
+      "org.wallet.rogalik.wallet.fabric.WalletFabricClient"
     ]
   },
   "mixins": [
@@ -25,7 +28,9 @@
   ],
   "depends": {
     "fabricloader": ">=0.19.3",
-    "minecraft": ">=26.2"
+    "minecraft": ">=26.2",
+    "architectury": ">=21.0.7",
+    "fabric-api": ">=0.156.0"
   },
   "suggests": {
     "modmenu": ">=20.0.0"

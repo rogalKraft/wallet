@@ -1,0 +1,26 @@
+{
+  "itemGroup.wallet": "Кошелёк",
+
+  "item.wallet.coin_1": "Монета 1",
+  "item.wallet.coin_5": "Монета 5",
+  "item.wallet.coin_10": "Монета 10",
+  "item.wallet.coin_20": "Монета 20",
+  "item.wallet.coin_50": "Монета 50",
+  "item.wallet.coin_100": "Монета 100",
+  "item.wallet.coin_500": "Монета 500",
+  "item.wallet.coin_sack": "Сумка",
+  "item.wallet.coin_sack.creator": "Создатель: %s",
+  "item.wallet.coin_sack.owner": "Владелец: %s",
+  "item.wallet.coin_sack.total_value": "Общий номинал: %s",
+
+  "gui.wallet.auto_pickup": "Автоподбор монет",
+
+  "message.wallet.not_owner": "Эта сумка принадлежит другому игроку",
+
+  "enchantment.wallet.owner_rope": "Привязка к владельцу",
+  "enchantment.wallet.owner_rope.desc": "Открыть сумку может только её владелец",
+  "enchantment.wallet.wallet_guardian": "Хранитель сумки",
+  "enchantment.wallet.wallet_guardian.desc": "Спасает сумку от гибели при смерти, теряя один уровень",
+  "enchantment.wallet.fragility": "Хрупкость",
+  "enchantment.wallet.fragility.desc": "Порвётся и рассыплет монеты, если вы погибнете"
+}

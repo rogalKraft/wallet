@@ -25,6 +25,7 @@ public class ModCreativeTabs
 				output.accept(ModItems.COIN_50.get());
 				output.accept(ModItems.COIN_100.get());
 				output.accept(ModItems.COIN_500.get());
+				output.accept(ModItems.WALLET_COIN_SACK.get());
 			})));
 
 	public static void init() {

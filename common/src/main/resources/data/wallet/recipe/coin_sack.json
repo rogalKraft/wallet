@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " S ",
+    "L#L",
+    " L "
+  ],
+  "key": {
+    "S": ["minecraft:string"],
+    "L": ["minecraft:leather"],
+    "#": ["minecraft:phantom_membrane"]
+  },
+  "result": {
+    "id": "wallet:coin_sack",
+    "count": 1
+  }
+}

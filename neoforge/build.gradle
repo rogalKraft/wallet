@@ -32,6 +32,11 @@ dependencies {
 
     common(project(path: ":common")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive = false }
+
+    // common/src/client (loom.splitEnvironmentSourceSets(), see common/build.gradle) isn't exposed
+    // as a consumable Loom variant, so pull its compiled output in directly for platform client
+    // entrypoints (e.g. WalletNeoForgeClient) that reference shared client-only classes like Screens.
+    compileOnly rootProject.project(":common").sourceSets.client.output
 }
 
 // neoforge.mods.toml uses "${file.jarVersion}", which NeoForge itself substitutes at runtime
@@ -42,6 +47,7 @@ dependencies {
 // See: https://gist.github.com/shedaniel/18d4eebf940e9c3296e87d994ebb2838
 jar {
     archiveClassifier = "raw"
+    from(rootProject.project(":common").sourceSets.client.output)
 }
 
 shadowJar {

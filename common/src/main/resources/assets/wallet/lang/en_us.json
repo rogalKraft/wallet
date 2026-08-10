@@ -7,5 +7,20 @@
   "item.wallet.coin_20": "20 Coin",
   "item.wallet.coin_50": "50 Coin",
   "item.wallet.coin_100": "100 Coin",
-  "item.wallet.coin_500": "500 Coin"
+  "item.wallet.coin_500": "500 Coin",
+  "item.wallet.coin_sack": "Wallet",
+  "item.wallet.coin_sack.creator": "Created by: %s",
+  "item.wallet.coin_sack.owner": "Owner: %s",
+  "item.wallet.coin_sack.total_value": "Total value: %s",
+
+  "gui.wallet.auto_pickup": "Auto-collect coins",
+
+  "message.wallet.not_owner": "This wallet belongs to another player",
+
+  "enchantment.wallet.owner_rope": "Owner Binding",
+  "enchantment.wallet.owner_rope.desc": "Only the owner may open this wallet",
+  "enchantment.wallet.wallet_guardian": "Wallet Guardian",
+  "enchantment.wallet.wallet_guardian.desc": "Survives your death, losing one level each time",
+  "enchantment.wallet.fragility": "Fragility",
+  "enchantment.wallet.fragility.desc": "Will tear apart and spill its coins if you die"
 }

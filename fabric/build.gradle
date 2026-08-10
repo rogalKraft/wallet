@@ -26,6 +26,11 @@ dependencies {
     common(project(path: ":common")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 
+    // common/src/client (loom.splitEnvironmentSourceSets(), see common/build.gradle) isn't exposed
+    // as a consumable Loom variant, so pull its compiled output in directly for platform client
+    // entrypoints (e.g. WalletFabricClient) that reference shared client-only classes like Screens.
+    compileOnly rootProject.project(":common").sourceSets.client.output
+
     // Dev-environment only: makes Mod Menu available in :fabric:runClient without pulling it into
     // the shipped jar or the shadowJar classpath. Not a hard dependency - see fabric.mod.json "suggests".
     runtimeOnly "com.terraformersmc:modmenu:${rootProject.modmenu_version}"
@@ -43,6 +48,7 @@ processResources {
 // See: https://gist.github.com/shedaniel/18d4eebf940e9c3296e87d994ebb2838
 jar {
     archiveClassifier = "raw"
+    from(rootProject.project(":common").sourceSets.client.output)
 }
 
 shadowJar {

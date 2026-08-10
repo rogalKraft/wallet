@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "wallet:coin_100",
+    "wallet:coin_100",
+    "wallet:coin_100",
+    "wallet:coin_100",
+    "wallet:coin_100"
+  ],
+  "result": {
+    "id": "wallet:coin_500",
+    "count": 1
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "SS"
+  ],
+  "key": {
+    "S": ["wallet:coin_50"]
+  },
+  "result": {
+    "id": "wallet:coin_20",
+    "count": 5
+  }
+}

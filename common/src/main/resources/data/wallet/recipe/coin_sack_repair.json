@@ -1,0 +1,6 @@
+{
+  "type": "wallet:wallet_repair",
+  "template": "minecraft:phantom_membrane",
+  "base": "wallet:coin_sack",
+  "addition": "minecraft:leather"
+}

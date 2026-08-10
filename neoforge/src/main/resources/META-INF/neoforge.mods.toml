@@ -17,13 +17,20 @@ version="${file.jarVersion}" #mandatory
 # A display name for the mod
 displayName="Wallet" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
-logoFile="icon.png" #optional
+iconFile="icon.png" #optional
 # A text field displayed in the mod UI
 authors="rogalKraft" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-A coin & wallet mod: collect, store, and manage currency looted from villages, dungeons, and other structures. Reimplements the original Wallet datapack as a full mod with real items, a real wallet screen, and no companion resource pack.
+Adds seven coin denominations (1/5/10/20/50/100/500) that generate in village, dungeon, and structure loot, plus a Coin Sack that stores them in its own 21-slot screen with auto-pickup and a running total. Coins can be exchanged between denominations at a crafting table. Three enchantments add ownership and risk: Owner Binding locks a sack to its owner, Wallet Guardian saves it on death, and Fragility spills its contents. A full reimplementation of the Wallet datapack as a real mod - no companion resource pack needed.
 '''
+
+[[dependencies.wallet]]
+    modId="architectury"
+    type="required"
+    versionRange="[21.0.7,)"
+    ordering="AFTER"
+    side="BOTH"
 
 [[dependencies.wallet]] #optional
     modId="neoforge" #mandatory

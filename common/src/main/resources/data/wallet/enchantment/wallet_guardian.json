@@ -1,0 +1,23 @@
+{
+  "description": {
+    "translate": "enchantment.wallet.wallet_guardian"
+  },
+  "supported_items": "#wallet:enchantable/wallet",
+  "exclusive_set": [
+    "wallet:fragility"
+  ],
+  "weight": 10,
+  "max_level": 5,
+  "min_cost": {
+    "base": 6,
+    "per_level_above_first": 6
+  },
+  "max_cost": {
+    "base": 26,
+    "per_level_above_first": 6
+  },
+  "anvil_cost": 4,
+  "slots": [
+    "any"
+  ]
+}
