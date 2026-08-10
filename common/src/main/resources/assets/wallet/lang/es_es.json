@@ -1,0 +1,26 @@
+{
+  "itemGroup.wallet": "Monedero",
+
+  "item.wallet.coin_1": "Moneda de 1",
+  "item.wallet.coin_5": "Moneda de 5",
+  "item.wallet.coin_10": "Moneda de 10",
+  "item.wallet.coin_20": "Moneda de 20",
+  "item.wallet.coin_50": "Moneda de 50",
+  "item.wallet.coin_100": "Moneda de 100",
+  "item.wallet.coin_500": "Moneda de 500",
+  "item.wallet.coin_sack": "Monedero",
+  "item.wallet.coin_sack.creator": "Creado por: %s",
+  "item.wallet.coin_sack.owner": "Propietario: %s",
+  "item.wallet.coin_sack.total_value": "Valor total: %s",
+
+  "gui.wallet.auto_pickup": "Recoger monedas automáticamente",
+
+  "message.wallet.not_owner": "Este monedero pertenece a otro jugador",
+
+  "enchantment.wallet.owner_rope": "Vínculo del propietario",
+  "enchantment.wallet.owner_rope.desc": "Solo el propietario puede abrir este monedero",
+  "enchantment.wallet.wallet_guardian": "Guardián del monedero",
+  "enchantment.wallet.wallet_guardian.desc": "Sobrevive a tu muerte, perdiendo un nivel cada vez",
+  "enchantment.wallet.fragility": "Fragilidad",
+  "enchantment.wallet.fragility.desc": "Se romperá y esparcirá sus monedas si mueres"
+}

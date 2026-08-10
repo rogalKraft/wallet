@@ -1,0 +1,26 @@
+{
+  "itemGroup.wallet": "Geldbeutel",
+
+  "item.wallet.coin_1": "1er-Münze",
+  "item.wallet.coin_5": "5er-Münze",
+  "item.wallet.coin_10": "10er-Münze",
+  "item.wallet.coin_20": "20er-Münze",
+  "item.wallet.coin_50": "50er-Münze",
+  "item.wallet.coin_100": "100er-Münze",
+  "item.wallet.coin_500": "500er-Münze",
+  "item.wallet.coin_sack": "Geldbeutel",
+  "item.wallet.coin_sack.creator": "Hergestellt von: %s",
+  "item.wallet.coin_sack.owner": "Besitzer: %s",
+  "item.wallet.coin_sack.total_value": "Gesamtwert: %s",
+
+  "gui.wallet.auto_pickup": "Münzen automatisch aufsammeln",
+
+  "message.wallet.not_owner": "Dieser Geldbeutel gehört einem anderen Spieler",
+
+  "enchantment.wallet.owner_rope": "Besitzerbindung",
+  "enchantment.wallet.owner_rope.desc": "Nur der Besitzer kann diesen Geldbeutel öffnen",
+  "enchantment.wallet.wallet_guardian": "Beutelwächter",
+  "enchantment.wallet.wallet_guardian.desc": "Übersteht deinen Tod und verliert dabei jedes Mal eine Stufe",
+  "enchantment.wallet.fragility": "Zerbrechlichkeit",
+  "enchantment.wallet.fragility.desc": "Reißt bei deinem Tod auf und verstreut die Münzen"
+}

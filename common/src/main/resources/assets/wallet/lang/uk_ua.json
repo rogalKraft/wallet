@@ -1,0 +1,26 @@
+{
+  "itemGroup.wallet": "Гаманець",
+
+  "item.wallet.coin_1": "Монета 1",
+  "item.wallet.coin_5": "Монета 5",
+  "item.wallet.coin_10": "Монета 10",
+  "item.wallet.coin_20": "Монета 20",
+  "item.wallet.coin_50": "Монета 50",
+  "item.wallet.coin_100": "Монета 100",
+  "item.wallet.coin_500": "Монета 500",
+  "item.wallet.coin_sack": "Гаманець",
+  "item.wallet.coin_sack.creator": "Створив: %s",
+  "item.wallet.coin_sack.owner": "Власник: %s",
+  "item.wallet.coin_sack.total_value": "Загальний номінал: %s",
+
+  "gui.wallet.auto_pickup": "Автопідбирання монет",
+
+  "message.wallet.not_owner": "Цей гаманець належить іншому гравцеві",
+
+  "enchantment.wallet.owner_rope": "Прив'язка до власника",
+  "enchantment.wallet.owner_rope.desc": "Відкрити гаманець може лише його власник",
+  "enchantment.wallet.wallet_guardian": "Охоронець гаманця",
+  "enchantment.wallet.wallet_guardian.desc": "Переживає вашу смерть, втрачаючи один рівень щоразу",
+  "enchantment.wallet.fragility": "Крихкість",
+  "enchantment.wallet.fragility.desc": "Порветься й розсипле монети, якщо ви загинете"
+}

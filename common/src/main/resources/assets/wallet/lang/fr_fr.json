@@ -1,0 +1,26 @@
+{
+  "itemGroup.wallet": "Bourse",
+
+  "item.wallet.coin_1": "Pièce de 1",
+  "item.wallet.coin_5": "Pièce de 5",
+  "item.wallet.coin_10": "Pièce de 10",
+  "item.wallet.coin_20": "Pièce de 20",
+  "item.wallet.coin_50": "Pièce de 50",
+  "item.wallet.coin_100": "Pièce de 100",
+  "item.wallet.coin_500": "Pièce de 500",
+  "item.wallet.coin_sack": "Bourse",
+  "item.wallet.coin_sack.creator": "Créée par : %s",
+  "item.wallet.coin_sack.owner": "Propriétaire : %s",
+  "item.wallet.coin_sack.total_value": "Valeur totale : %s",
+
+  "gui.wallet.auto_pickup": "Ramasser les pièces automatiquement",
+
+  "message.wallet.not_owner": "Cette bourse appartient à un autre joueur",
+
+  "enchantment.wallet.owner_rope": "Lien du propriétaire",
+  "enchantment.wallet.owner_rope.desc": "Seul le propriétaire peut ouvrir cette bourse",
+  "enchantment.wallet.wallet_guardian": "Gardien de la bourse",
+  "enchantment.wallet.wallet_guardian.desc": "Survit à votre mort en perdant un niveau à chaque fois",
+  "enchantment.wallet.fragility": "Fragilité",
+  "enchantment.wallet.fragility.desc": "Se déchirera et répandra ses pièces si vous mourez"
+}
