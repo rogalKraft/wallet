@@ -121,3 +121,7 @@ run/
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
 /dist/
+
+# Local agent/editor context - kept on disk, never published
+/CLAUDE.md
+/.claude/
