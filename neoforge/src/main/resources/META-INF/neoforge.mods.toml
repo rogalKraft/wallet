@@ -1,7 +1,7 @@
 # The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
 modLoader="javafml" #mandatory
 # A version range to match for said mod loader - this is the FML loader spec version bundled with NeoForge, NOT the neoforge_version.
-# TODO: verify against the actual FML loader version bundled with the pinned NeoForge build (26.2.0.48-beta) on first successful build.
+# TODO: verify against the actual FML loader version bundled with the pinned NeoForge build (26.3.0.6-beta) on first successful build.
 loaderVersion="[1,)" #mandatory
 # The license for your mod. This is mandatory metadata and allows for easier comprehension of your redistributive properties.
 license="MIT"
@@ -28,22 +28,22 @@ Adds seven coin denominations (1/5/10/20/50/100/500) that generate in village, d
 [[dependencies.wallet]]
     modId="architectury"
     type="required"
-    versionRange="[21.0.7,)"
+    versionRange="[22.0.2,)"
     ordering="AFTER"
     side="BOTH"
 
 [[dependencies.wallet]] #optional
     modId="neoforge" #mandatory
     type="required" #mandatory
-    versionRange="[26.2,)" #mandatory
+    versionRange="[26.3,)" #mandatory
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.wallet]]
     modId="minecraft"
     type="required"
-    # NOTE: Minecraft switched to year-based versioning (26.2 is the current line); verify this upper bound (27.0)
+    # NOTE: Minecraft switched to year-based versioning (26.x is the current line); verify this upper bound (27.0)
     # against the actual next major release before shipping.
-    versionRange="[26.2,27.0)"
+    versionRange="[26.3,27.0)"
     ordering="NONE"
     side="BOTH"

@@ -4,7 +4,7 @@ import java.util.Set;
 
 import dev.architectury.event.events.common.LootEvent;
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -14,7 +14,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetEnchantmentsFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ConstantValue;
 import org.wallet.rogalik.wallet.enchantment.ModEnchantments;
 
 /**
@@ -39,19 +39,14 @@ public final class WalletLootInjection
 	}
 
 	public static void init() {
-		// Implemented as an anonymous class rather than a lambda on purpose: the interface's abstract
-		// method has no HolderLookup.Provider, but both Fabric's and NeoForge's Architectury impls
-		// actually invoke the 4-arg default overload - which is the only way to resolve the
-		// Holder<Enchantment> the loot function needs.
+		// Implemented as an anonymous class rather than a lambda since a lambda can't carry the
+		// @Override that documents which interface method this is. Architectury 22.0.2 narrowed the
+		// provider parameter to HolderGetter.Provider (from HolderLookup.Provider on 21.0.7) and
+		// dropped the deprecated 3-arg overload this used to also stub out - it's the only method
+		// left on the interface now.
 		LootEvent.MODIFY_LOOT_TABLE.register(new LootEvent.ModifyLootTable() {
 			@Override
-			@SuppressWarnings("removal") // deprecated in favour of the Provider-carrying overload below
-			public void modifyLootTable(ResourceKey<LootTable> key, LootEvent.LootTableModificationContext context, boolean builtin) {
-				// Unused - see the overload below.
-			}
-
-			@Override
-			public void modifyLootTable(HolderLookup.Provider registries, ResourceKey<LootTable> key,
+			public void modifyLootTable(HolderGetter.Provider registries, ResourceKey<LootTable> key,
 					LootEvent.LootTableModificationContext context, boolean builtin) {
 				// Only touch vanilla's own tables; leave datapack overrides alone.
 				if (!builtin || !TARGETS.contains(key)) {
@@ -59,12 +54,16 @@ public final class WalletLootInjection
 				}
 
 				Holder<Enchantment> ownerRope = ModEnchantments.holder(registries, ModEnchantments.OWNER_ROPE);
+				// setRolls and withEnchantment's level both now take an int-typed provider (were a
+				// float NumberProvider on 26.2) - the static ConstantValue.exactly(...) factory is
+				// gone too, replaced by the plain record constructor wrapped in a direct
+				// (non-registry-backed) Holder.
 				context.addPool(LootPool.lootPool()
-					.setRolls(ConstantValue.exactly(1.0F))
+					.setRolls(Holder.direct(new ConstantValue(1)))
 					.when(LootItemRandomChanceCondition.randomChance(CHANCE))
 					.add(LootItem.lootTableItem(Items.ENCHANTED_BOOK)
 						.apply(new SetEnchantmentsFunction.Builder()
-							.withEnchantment(ownerRope, ConstantValue.exactly(1.0F)))));
+							.withEnchantment(ownerRope, Holder.direct(new ConstantValue(1))))));
 			}
 		});
 	}

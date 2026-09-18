@@ -3,16 +3,17 @@ package org.wallet.rogalik.wallet.loot;
 import java.util.Set;
 
 import dev.architectury.event.events.common.LootEvent;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
+import net.minecraft.world.level.storage.loot.entries.UniformContainerBase;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ConstantValue;
 import org.wallet.rogalik.wallet.item.ModItems;
 
 /**
@@ -104,15 +105,13 @@ public final class CoinLootInjection
 	}
 
 	public static void init() {
+		// Architectury 22.0.2 dropped the deprecated 3-arg overload this used to also implement (a
+		// no-op stub kept only because the interface still declared it as abstract on 21.0.7) and
+		// narrowed the provider parameter from HolderLookup.Provider to HolderGetter.Provider - the
+		// lowest common type both Fabric's and NeoForge's loot APIs can actually supply.
 		LootEvent.MODIFY_LOOT_TABLE.register(new LootEvent.ModifyLootTable() {
 			@Override
-			@SuppressWarnings("removal") // superseded by the Provider-carrying overload below
-			public void modifyLootTable(ResourceKey<LootTable> key, LootEvent.LootTableModificationContext context, boolean builtin) {
-				// Unused - see the 4-arg overload, which is what both platforms actually invoke.
-			}
-
-			@Override
-			public void modifyLootTable(HolderLookup.Provider registries, ResourceKey<LootTable> key,
+			public void modifyLootTable(HolderGetter.Provider registries, ResourceKey<LootTable> key,
 					LootEvent.LootTableModificationContext context, boolean builtin) {
 				if (!builtin) {
 					return;
@@ -147,12 +146,15 @@ public final class CoinLootInjection
 	}
 
 	private static LootPool.Builder coinPool(float chance) {
+		// setRolls now takes an int-typed provider (was a float NumberProvider on 26.2) - the
+		// static ConstantValue.exactly(...) factory is gone too, replaced by the plain record
+		// constructor wrapped in a direct (non-registry-backed) Holder.
 		return LootPool.lootPool()
-			.setRolls(ConstantValue.exactly(1.0F))
+			.setRolls(Holder.direct(new ConstantValue(1)))
 			.when(LootItemRandomChanceCondition.randomChance(chance));
 	}
 
-	private static LootPoolSingletonContainer.Builder<?> entry(Item item, int weight) {
+	private static UniformContainerBase.Builder<?> entry(Item item, int weight) {
 		return LootItem.lootTableItem(item).setWeight(weight);
 	}
 }

@@ -4,7 +4,7 @@ Immerse yourself in the world of Minecraft economics with **Wallet**. Currency c
 
 Originally a datapack, now rebuilt from scratch as a mod for **Fabric** and **NeoForge**.
 
-**Minecraft 26.2** · requires [Architectury API](https://modrinth.com/mod/architectury-api) and, on Fabric, [Fabric API](https://modrinth.com/mod/fabric-api)
+**Minecraft 26.3** · requires [Architectury API](https://modrinth.com/mod/architectury-api) and, on Fabric, [Fabric API](https://modrinth.com/mod/fabric-api)
 
 ## Features
 

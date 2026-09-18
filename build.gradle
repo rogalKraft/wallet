@@ -1,9 +1,9 @@
 plugins {
-    id "architectury-plugin" version "3.5.169"
+    id "architectury-plugin" version "3.5.170"
     // Minecraft 26.1+ ships unobfuscated, so Loom's normal remapping pipeline no longer applies.
     // dev.architectury.loom-no-remap is the Architectury-published variant for unobfuscated versions
     // (same release train as dev.architectury.loom - see architectury/architectury-loom#328).
-    id "dev.architectury.loom-no-remap" version "1.17.491" apply false
+    id "dev.architectury.loom-no-remap" version "1.17.493" apply false
 }
 
 architectury {
@@ -26,7 +26,7 @@ allprojects {
     apply plugin: "maven-publish"
 
     // Mirrors the original datapack's "Wallet<version>_<mcversion>" naming, disambiguated per loader:
-    // Wallet-fabric-3.0.0+26.2.jar / Wallet-neoforge-3.0.0+26.2.jar.
+    // Wallet-fabric-3.0.0+26.3.jar / Wallet-neoforge-3.0.0+26.3.jar.
     base.archivesName = (project == rootProject)
         ? rootProject.archives_base_name
         : "${rootProject.archives_base_name}-${project.name}"

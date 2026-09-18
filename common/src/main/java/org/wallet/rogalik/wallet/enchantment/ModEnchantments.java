@@ -1,7 +1,7 @@
 package org.wallet.rogalik.wallet.enchantment;
 
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -20,7 +20,7 @@ import org.wallet.rogalik.wallet.Wallet;
  * <p>The read helpers deliberately walk the {@code minecraft:enchantments} component and match entries
  * by {@code ResourceKey} instead of resolving a {@code Holder} through {@code registryAccess()}. That
  * keeps them usable where no registry access is at hand - notably {@code Recipe.assemble(input)}, which
- * receives no {@code HolderLookup.Provider} in 26.2.
+ * receives no {@code HolderGetter.Provider} in 26.2/26.3.
  */
 public final class ModEnchantments
 {
@@ -66,13 +66,20 @@ public final class ModEnchantments
 		}
 	}
 
-	/** Adds (or replaces) an enchantment. Needs a registry lookup since the Holder may not be on the stack yet. */
-	public static void set(HolderLookup.Provider registries, ItemStack stack, ResourceKey<Enchantment> enchantment, int level) {
+	/**
+	 * Adds (or replaces) an enchantment. Needs a registry lookup since the Holder may not be on the
+	 * stack yet. Takes the narrower {@code HolderGetter.Provider} (rather than
+	 * {@code HolderLookup.Provider}) so callers fed from Architectury's loot event - which as of
+	 * 22.0.2 only supplies that narrower type - don't need to cast; a real
+	 * {@code HolderLookup.Provider} (e.g. {@code Level.registryAccess()}) satisfies it too, since
+	 * that interface extends this one.
+	 */
+	public static void set(HolderGetter.Provider registries, ItemStack stack, ResourceKey<Enchantment> enchantment, int level) {
 		Holder<Enchantment> holder = holder(registries, enchantment);
 		EnchantmentHelper.updateEnchantments(stack, mutable -> mutable.set(holder, level));
 	}
 
-	public static Holder<Enchantment> holder(HolderLookup.Provider registries, ResourceKey<Enchantment> enchantment) {
+	public static Holder<Enchantment> holder(HolderGetter.Provider registries, ResourceKey<Enchantment> enchantment) {
 		return registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(enchantment);
 	}
 }
